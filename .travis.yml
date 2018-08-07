@@ -14,7 +14,7 @@ env:
   - LATEST=0 PHP_VERSION=5.6 PHP_SHORT_VERSION=56 XDEBUG_VERSION=2.5.5
 
 script:
-- bash dockerBuild.sh
+- bash docker-build.sh
 
 # Do some informational output
 before_deploy:
@@ -22,7 +22,7 @@ before_deploy:
 
 deploy:
   provider: script
-  script: bash dockerPush.sh
+  script: bash docker-push.sh
   on:
     branch: master
 
