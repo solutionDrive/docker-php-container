@@ -70,4 +70,6 @@ RUN docker-php-ext-configure bcmath --enable-bcmath \
 RUN apk del .build-deps \
     && rm -rf /tmp/*
 
-RUN which php
+ENTRYPOINT ['entrypoint.sh']
+
+CMD ['php', '-a']
