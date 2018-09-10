@@ -6,7 +6,7 @@ FROM php:$PHP_VERSION-fpm-alpine
 
 # Make it usable after FROM
 ARG PHP_SHORT_VERSION
-
+ARG XDEBUG_VERSION
 
 RUN set -xe \
     && apk add --no-cache --virtual .build-deps \
