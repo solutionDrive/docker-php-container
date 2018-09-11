@@ -3,6 +3,7 @@
 docker build \
     --build-arg PHP_VERSION=$PHP_VERSION \
     --build-arg PHP_SHORT_VERSION=$PHP_SHORT_VERSION \
+    --build-arg XDEBUG_VERSION=$XDEBUG_VERSION \
     -t solutiondrive/docker-php-container:php$PHP_VERSION \
     .
 
