@@ -48,7 +48,7 @@ RUN set -xe \
 RUN docker-php-ext-configure bcmath --enable-bcmath \
     && docker-php-ext-configure calendar --enable-calendar \
     && docker-php-ext-configure gd \
-        --enable-gd \
+        --with-gd \
         --with-freetype-dir=/usr/include/ \
         --with-jpeg-dir=/usr/include/ \
         --with-png-dir=/usr/include/ \
