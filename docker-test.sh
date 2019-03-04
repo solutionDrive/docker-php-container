@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 ATTRIBUTES_TEMPLATE_FILE="tests/inspec/php-container/attributes.yml.template"
 ATTRIBUTES_FILE="tests/inspec/php-container/attributes.yml"
 cp ${ATTRIBUTES_TEMPLATE_FILE} ${ATTRIBUTES_FILE}
