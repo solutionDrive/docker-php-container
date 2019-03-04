@@ -9,6 +9,23 @@ ARG PHP_SHORT_VERSION
 ARG XDEBUG_VERSION
 
 RUN set -xe \
+    && apk add --no-cache \
+        bash \
+        coreutils \
+        ed \
+        freetype \
+        git \
+        gzip \
+        icu \
+        libjpeg-turbo \
+        libltdl \
+        libmcrypt \
+        libpng \
+        libzip \
+        msmtp \
+        mysql-client \
+        unzip \
+        wget
     && apk add --no-cache --virtual .build-deps \
         autoconf \
         build-base \
@@ -28,23 +45,6 @@ RUN set -xe \
         libzip-dev \
         pcre-dev \
         pkgconf \
-    && apk add --no-cache \
-        bash \
-        coreutils \
-        ed \
-        freetype \
-        git \
-        gzip \
-        icu \
-        libjpeg-turbo \
-        libltdl \
-        libmcrypt \
-        libpng \
-        libzip \
-        msmtp \
-        mysql-client \
-        unzip \
-        wget
 
 RUN docker-php-ext-configure bcmath --enable-bcmath \
     && docker-php-ext-configure calendar --enable-calendar \
