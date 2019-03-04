@@ -7,4 +7,4 @@ summary: Verifies that a default php setup exists
 version: 0.1.0
 supports:
   - os-family: linux
-inspec_version: "~> 2.1"
+inspec_version: "~> 3.7"
