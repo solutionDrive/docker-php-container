@@ -1,5 +1,7 @@
 sudo: required
 
+cache: bundler
+
 services:
 - docker
 
@@ -15,6 +17,7 @@ env:
 
 script:
 - bash docker-build.sh
+- bash docker-test.sh
 
 # Do some informational output
 before_deploy:
