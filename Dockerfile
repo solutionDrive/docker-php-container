@@ -16,19 +16,32 @@ RUN set -xe \
     && apk add --no-cache --virtual .persistent-deps \
         freetype-dev \
         icu-dev \
+        libc-dev \
         libjpeg-turbo \
         libjpeg-turbo-dev \
+        libmcrypt-dev \
         libpng \
         libpng-dev \
         libxml2 \
         libxml2-dev \
         libxml2-utils \
         libzip-dev \
+        pcre-dev \
+        pkgconf \
     && apk add --no-cache \
         bash \
+        coreutils \
         ed \
+        freetype \
         git \
         gzip \
+        icu \
+        libjpeg-turbo \
+        libltdl \
+        libmcrypt \
+        libpng \
+        libzip \
+        msmtp \
         mysql-client \
         unzip \
         wget
@@ -40,11 +53,14 @@ RUN docker-php-ext-configure bcmath --enable-bcmath \
         --with-freetype-dir=/usr/include/ \
         --with-jpeg-dir=/usr/include/ \
         --with-png-dir=/usr/include/ \
+    && docker-php-ext-configure iconv --enable-iconv \
     && docker-php-ext-configure intl --enable-intl \
     && docker-php-ext-configure pcntl --enable-pcntl \
     && docker-php-ext-configure pdo_mysql --with-pdo-mysql \
     && docker-php-ext-configure mbstring --enable-mbstring \
+    && docker-php-ext-configure shmop --enable-shmop \
     && docker-php-ext-configure soap --enable-soap \
+    && docker-php-ext-configure sysvshm --enable-sysvshm \
     && docker-php-ext-configure xml --enable-xml \
     && docker-php-ext-configure zip --enable-zip --with-libzip \
     && docker-php-ext-install \
@@ -53,6 +69,7 @@ RUN docker-php-ext-configure bcmath --enable-bcmath \
         exif \
         fileinfo \
         gd \
+        iconv \
         intl \
         json \
         mbstring \
@@ -62,6 +79,7 @@ RUN docker-php-ext-configure bcmath --enable-bcmath \
         posix \
         shmop \
         soap \
+        sysvshm \
         xml \
         zip \
     && pecl install redis xdebug-$XDEBUG_VERSION \
