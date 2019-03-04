@@ -17,6 +17,6 @@ control 'php' do
 
     describe command('php -v') do
         its('exit_status') { should eq 0 }
-        its('stdout') { should match ('/^PHP ' + php_version.to_s +  '?/') }
+        its('stdout') { should include 'PHP ' + php_version.to_s }
     end
 end
