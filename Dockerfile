@@ -27,11 +27,11 @@ RUN set -xe \
         mysql-client \
         unzip \
         wget \
-    && apk add --no-cache --virtual .build-deps \
+    && apk add --no-cache --virtual .sd-build-deps \
         autoconf \
         build-base \
         libtool \
-    && apk add --no-cache --virtual .persistent-deps \
+    && apk add --no-cache --virtual .sd-persistent-deps \
         freetype-dev \
         icu-dev \
         libc-dev \
@@ -84,5 +84,5 @@ RUN docker-php-ext-configure bcmath --enable-bcmath \
     && docker-php-ext-enable opcache redis \
     && ln -sf /usr/bin/msmtp /usr/sbin/sendmail
 
-RUN apk del .build-deps \
+RUN apk del .sd-build-deps \
     && rm -rf /tmp/*
