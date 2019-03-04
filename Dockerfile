@@ -21,6 +21,7 @@ RUN set -xe \
         libltdl \
         libmcrypt \
         libpng \
+        libxml2 \
         libzip \
         msmtp \
         mysql-client \
@@ -36,9 +37,7 @@ RUN set -xe \
         libc-dev \
         libjpeg-turbo-dev \
         libmcrypt-dev \
-        libpng \
         libpng-dev \
-        libxml2 \
         libxml2-dev \
         libxml2-utils \
         libzip-dev \
