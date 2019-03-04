@@ -8,8 +8,8 @@ FROM php:$PHP_VERSION-fpm-alpine
 ARG PHP_SHORT_VERSION
 ARG XDEBUG_VERSION
 
-RUN set -xe \
-    && apk add --no-cache \
+RUN set -xe
+RUN apk add --no-cache \
         bash \
         coreutils \
         ed \
@@ -26,12 +26,12 @@ RUN set -xe \
         msmtp \
         mysql-client \
         unzip \
-        wget \
-    && apk add --no-cache --virtual .sd-build-deps \
+        wget
+RUN apk add --no-cache --virtual .sd-build-deps \
         autoconf \
         build-base \
-        libtool \
-    && apk add --no-cache --virtual .sd-persistent-deps \
+        libtool
+RUN apk add --no-cache --virtual .sd-persistent-deps \
         freetype-dev \
         icu-dev \
         libc-dev \
@@ -42,7 +42,7 @@ RUN set -xe \
         libxml2-utils \
         libzip-dev \
         pcre-dev \
-        pkgconf \
+        pkgconf
 
 RUN docker-php-ext-configure bcmath --enable-bcmath \
     && docker-php-ext-configure calendar --enable-calendar \
