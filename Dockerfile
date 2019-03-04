@@ -83,7 +83,8 @@ RUN docker-php-ext-configure bcmath --enable-bcmath \
         xml \
         zip \
     && pecl install redis xdebug-$XDEBUG_VERSION \
-    && docker-php-ext-enable opcache redis
+    && docker-php-ext-enable opcache redis \
+    && ln -sf /usr/bin/msmtp /usr/sbin/sendmail
 
 RUN apk del .build-deps \
     && rm -rf /tmp/*
