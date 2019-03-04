@@ -25,7 +25,7 @@ RUN set -xe \
         msmtp \
         mysql-client \
         unzip \
-        wget
+        wget \
     && apk add --no-cache --virtual .build-deps \
         autoconf \
         build-base \
@@ -34,7 +34,6 @@ RUN set -xe \
         freetype-dev \
         icu-dev \
         libc-dev \
-        libjpeg-turbo \
         libjpeg-turbo-dev \
         libmcrypt-dev \
         libpng \
