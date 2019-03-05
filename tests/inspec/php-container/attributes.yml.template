@@ -1,0 +1,2 @@
+php_version: {{ php_version }}
+php_short_version: {{ php_short_version }}
