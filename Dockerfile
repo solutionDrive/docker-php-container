@@ -34,6 +34,7 @@ RUN apk add --no-cache --virtual .sd-build-deps \
 RUN apk add --no-cache --virtual .sd-persistent-deps \
         freetype-dev \
         icu-dev \
+        imap-dev \
         libc-dev \
         libjpeg-turbo-dev \
         libmcrypt-dev \
@@ -52,6 +53,7 @@ RUN docker-php-ext-configure bcmath --enable-bcmath \
         --with-jpeg-dir=/usr/include/ \
         --with-png-dir=/usr/include/ \
     && docker-php-ext-configure iconv --enable-iconv \
+    && docker-php-ext-configure imap --with-imap \
     && docker-php-ext-configure intl --enable-intl \
     && docker-php-ext-configure pcntl --enable-pcntl \
     && docker-php-ext-configure pdo_mysql --with-pdo-mysql \
@@ -68,6 +70,7 @@ RUN docker-php-ext-configure bcmath --enable-bcmath \
         fileinfo \
         gd \
         iconv \
+        imap \
         intl \
         json \
         mbstring \
