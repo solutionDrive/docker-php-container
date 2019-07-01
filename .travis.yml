@@ -23,8 +23,7 @@ before_install:
 
 script:
 - bash docker-build.sh
-- bundle install
-- bundle exec insepc --version
+- ls -al ./vendor/bundle
 - bash docker-test.sh
 
 # Do some informational output
