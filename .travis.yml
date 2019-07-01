@@ -1,5 +1,8 @@
 sudo: required
-
+dist: xenial
+language: ruby
+rvm:
+  - 2.3.7
 cache: bundler
 
 services:
@@ -17,8 +20,8 @@ env:
   - LATEST=0 PHP_VERSION=5.6 PHP_SHORT_VERSION=56 XDEBUG_VERSION=2.5.5
 
 script:
-- bash docker-build.sh
-- bash docker-test.sh
+  - bash docker-build.sh
+  - bash docker-test.sh
 
 # Do some informational output
 before_deploy:
