@@ -5,7 +5,7 @@ rvm:
   - 2.3.7
 cache: bundler
 services:
-- docker
+  - docker
 env:
   global:
     - secure: TxZQPS7NdXGCu1bHyXe/USzUqPYqx4xijGR8/Jc0H4J23hL9j/PbZIbG/0IqMfs955a0shiSRh7u3uRfsCtmE3Ic0HwJmSly1K3ysFAW4lV7cDsJFIK4wObGe2mqR2ao3ahlilpoeVRanV4z33XpOirFfD61WNHuq0qhDTneR4453irFJYb6M4BQFbvqvtPcD1rO+UGmq3A5hO4U4kpHCY/1Bwp8R+zteDOZyu52y6yCXznWu2SPhMUeMHvqCwpGjv5KLEpLnbG09+KCqfY0TWQ4oZe6gVIFT1xQjEqNTq+tsRDueLucSN7A+42b6640T3FAijpybSJrEFvwJMFBTgXBwANpgbO1GQ/1tB5whBo42S5JPhubLmfFyyNm6/mSUPckykWWhWJ0NwXfHUrlNNbC9yvcNaLq0Vc2OKOYc4zsOiWk5/g5+WX3L3cxxdpmrN33Q8jOrbY8G3x+EWZqFDHE+Org7x/tvbGANahQwCNHZ3H+OrbT1ds9rmLcpQ6p8DxJWNW6kxWnBP6ykxyN3Ipb4fjOPckgGtIMcwvvOcrDAOaXWbW6vf3kS318/IM9mS+GNc26MYOp1wmRPNJwFqhIK/MMuKhB+YAIKKyulk0SyjblS4rkFV7lC+mGdaIbBGFX8ptEemfXbyT45iV36VQFmLC+7fVLIX3xQegjqPk=
@@ -20,11 +20,11 @@ script:
   - bash docker-build.sh
   - bash docker-test.sh
 before_deploy:
-- docker images
+  - docker images
 deploy:
   provider: script
   script: bash docker-push.sh
   on:
     branch: master
 after_script:
-- docker images
+  - docker images
