@@ -1,3 +1,6 @@
 ### inspec
 tests/inspec/php-container/inspec.lock
 tests/inspec/php-container/attributes.yml
+.bundle/
+Gemfile.lock
+vendor/
