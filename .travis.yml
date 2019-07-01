@@ -1,6 +1,6 @@
 sudo: required
 dist: xenial
-
+language: ruby
 cache: bundler
 
 services:
