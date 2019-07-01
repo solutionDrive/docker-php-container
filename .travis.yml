@@ -19,7 +19,8 @@ env:
 
 script:
 - bash docker-build.sh
-- insepc --version
+- bundle install
+- bundle exec insepc --version
 - bash docker-test.sh
 
 # Do some informational output
