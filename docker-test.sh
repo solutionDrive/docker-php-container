@@ -9,6 +9,5 @@ printf '%s\n' ",s~{{ php_version }}~${PHP_VERSION}~g" w q | ed -s "${ATTRIBUTES_
 printf '%s\n' ",s~{{ php_short_version }}~${PHP_SHORT_VERSION}~g" w q | ed -s "${ATTRIBUTES_FILE}"
 
 DOCKER_CONTAINER_ID=`docker run -d solutiondrive/docker-php-container:php$PHP_VERSION`
-bundle install
-bundle exec inspec exec tests/inspec/php-container --attrs tests/inspec/php-container/attributes.yml -t docker://${DOCKER_CONTAINER_ID}
+BUNDLE_PATH="./vendor/bundle" bundle exec inspec exec tests/inspec/php-container --attrs tests/inspec/php-container/attributes.yml -t docker://${DOCKER_CONTAINER_ID}
 docker stop ${DOCKER_CONTAINER_ID}
