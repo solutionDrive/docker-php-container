@@ -1,6 +1,8 @@
 sudo: required
 dist: xenial
 language: ruby
+rvm:
+  - 2.5.0
 cache: bundler
 
 services:
@@ -22,9 +24,9 @@ before_install:
   - gem install bundler -v '< 2'
 
 script:
-- bash docker-build.sh
-- ls -al ./vendor/bundle/ruby
-- bash docker-test.sh
+  - bash docker-build.sh
+  - ls -al ./vendor/bundle/ruby
+  - bash docker-test.sh
 
 # Do some informational output
 before_deploy:
