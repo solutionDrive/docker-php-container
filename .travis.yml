@@ -19,6 +19,7 @@ env:
 
 script:
 - bash docker-build.sh
+- insepc --version
 - bash docker-test.sh
 
 # Do some informational output
