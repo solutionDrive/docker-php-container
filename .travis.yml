@@ -25,7 +25,6 @@ before_install:
 
 script:
   - bash docker-build.sh
-  - ls -al ./vendor/bundle/ruby
   - bash docker-test.sh
 
 # Do some informational output
