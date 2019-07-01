@@ -1,7 +1,6 @@
 sudo: required
 dist: xenial
 language: ruby
-rvm: 1.9.3
 cache: bundler
 
 services:
@@ -17,6 +16,10 @@ env:
   - LATEST=0 PHP_VERSION=7.1 PHP_SHORT_VERSION=71 XDEBUG_VERSION=2.6.1
   - LATEST=0 PHP_VERSION=7.0 PHP_SHORT_VERSION=70 XDEBUG_VERSION=2.6.1
   - LATEST=0 PHP_VERSION=5.6 PHP_SHORT_VERSION=56 XDEBUG_VERSION=2.5.5
+
+before_install:
+  - gem uninstall -v '>= 2' -i $(rvm gemdir)@global -ax bundler || true
+  - gem install bundler -v '< 2'
 
 script:
 - bash docker-build.sh
