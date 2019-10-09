@@ -9,9 +9,17 @@ docker build \
     -t solutiondrive/docker-php-container:php$PHP_VERSION \
     .
 
+# Tag also as solutiondrive/php
+docker tag \
+    solutiondrive/docker-php-container:php$PHP_VERSION \
+    solutiondrive/php:php$PHP_VERSION
+
 # Tag "latest"
 if [ "$LATEST" = "1" ]; then
     docker tag \
         solutiondrive/docker-php-container:php$PHP_VERSION \
         solutiondrive/docker-php-container:latest
+    docker tag \
+        solutiondrive/docker-php-container:php$PHP_VERSION \
+        solutiondrive/php:latest
 fi
