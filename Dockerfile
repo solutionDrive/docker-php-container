@@ -62,8 +62,9 @@ RUN docker-php-ext-configure bcmath --enable-bcmath \
     && docker-php-ext-configure soap --enable-soap \
     && docker-php-ext-configure sysvshm --enable-sysvshm \
     && docker-php-ext-configure xml --enable-xml \
-    && docker-php-ext-configure zip --enable-zip --with-libzip \
-    && docker-php-ext-install \
+    && docker-php-ext-configure zip --enable-zip --with-libzip
+
+RUN docker-php-ext-install \
         bcmath \
         calendar \
         exif \
@@ -82,10 +83,11 @@ RUN docker-php-ext-configure bcmath --enable-bcmath \
         soap \
         sysvshm \
         xml \
-        zip \
-    && pecl install redis xdebug-$XDEBUG_VERSION \
-    && docker-php-ext-enable opcache redis \
-    && ln -sf /usr/bin/msmtp /usr/sbin/sendmail
+        zip
+
+RUN pecl install redis xdebug-$XDEBUG_VERSION
+RUN docker-php-ext-enable opcache redis
+RUN ln -sf /usr/bin/msmtp /usr/sbin/sendmail
 
 RUN apk del .sd-build-deps \
     && rm -rf /tmp/*
