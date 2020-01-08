@@ -63,7 +63,7 @@ RUN if [ "$PHP_SHORT_VERSION" = "74" ]; then \
     docker-php-ext-configure gd \
         --with-freetype=/usr/include/ \
         --with-jpeg=/usr/include/ \
-    && docker-php-ext-configure zip --with-zip --with-libzip; \
+    && docker-php-ext-configure zip --with-zip; \
 else \
     docker-php-ext-configure gd \
         --with-gd \
