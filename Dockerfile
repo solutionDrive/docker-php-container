@@ -57,21 +57,22 @@ RUN docker-php-ext-configure bcmath --enable-bcmath \
     && docker-php-ext-configure shmop --enable-shmop \
     && docker-php-ext-configure soap --enable-soap \
     && docker-php-ext-configure sysvshm --enable-sysvshm \
-    && docker-php-ext-configure xml --enable-xml \
-    && docker-php-ext-configure zip --enable-zip --with-libzip
+    && docker-php-ext-configure xml --enable-xml
 
 RUN if [ "x$PHP_SHORT_VERSION" = "74" ]; then \
     docker-php-ext-configure gd \
         --with-gd \
         --with-freetype=/usr/include/ \
         --with-jpeg-dir=/usr/include/ \
-        --with-png-dir=/usr/include/; \
+        --with-png-dir=/usr/include/ \
+    && docker-php-ext-configure zip --with-zip --with-libzip; \
 else \
     docker-php-ext-configure gd \
         --with-gd \
         --with-freetype-dir=/usr/include/ \
         --with-jpeg-dir=/usr/include/ \
-        --with-png-dir=/usr/include/; \
+        --with-png-dir=/usr/include/ \
+    && docker-php-ext-configure zip --enable-zip --with-libzip; \
 fi
 
 RUN docker-php-ext-install \
