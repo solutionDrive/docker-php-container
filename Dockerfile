@@ -38,6 +38,7 @@ RUN apk add --no-cache --virtual .sd-persistent-deps \
         libc-dev \
         libjpeg-turbo-dev \
         libmcrypt-dev \
+        oniguruma-dev \
         libpng-dev \
         libxml2-dev \
         libxml2-utils \
