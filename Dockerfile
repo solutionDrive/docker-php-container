@@ -61,10 +61,9 @@ RUN docker-php-ext-configure bcmath --enable-bcmath \
 
 RUN if [ "$PHP_SHORT_VERSION" = "74" ]; then \
     docker-php-ext-configure gd \
-        --with-gd \
         --with-freetype=/usr/include/ \
-        --with-jpeg-dir=/usr/include/ \
-        --with-png-dir=/usr/include/ \
+        --with-jpeg=/usr/include/ \
+        --with-png=/usr/include/ \
     && docker-php-ext-configure zip --with-zip --with-libzip; \
 else \
     docker-php-ext-configure gd \
