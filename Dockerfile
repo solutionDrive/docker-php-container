@@ -52,7 +52,7 @@ RUN docker-php-ext-configure bcmath --enable-bcmath \
         --with-freetype-dir=/usr/include/ \
         --with-jpeg-dir=/usr/include/ \
         --with-png-dir=/usr/include/ \
-    && docker-php-ext-configure iconv --with-iconv=/usr/include/ \
+    && docker-php-ext-configure iconv \
     && docker-php-ext-configure imap --with-imap \
     && docker-php-ext-configure intl --enable-intl \
     && docker-php-ext-configure pcntl --enable-pcntl \
