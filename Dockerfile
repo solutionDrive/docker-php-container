@@ -47,11 +47,6 @@ RUN apk add --no-cache --virtual .sd-persistent-deps \
 
 RUN docker-php-ext-configure bcmath --enable-bcmath \
     && docker-php-ext-configure calendar --enable-calendar \
-    && docker-php-ext-configure gd \
-        --with-gd \
-        --with-freetype-dir=/usr/include/ \
-        --with-jpeg-dir=/usr/include/ \
-        --with-png-dir=/usr/include/ \
     && docker-php-ext-configure iconv \
     && docker-php-ext-configure imap --with-imap \
     && docker-php-ext-configure intl --enable-intl \
@@ -63,6 +58,20 @@ RUN docker-php-ext-configure bcmath --enable-bcmath \
     && docker-php-ext-configure sysvshm --enable-sysvshm \
     && docker-php-ext-configure xml --enable-xml \
     && docker-php-ext-configure zip --enable-zip --with-libzip
+
+RUN if [ "x$PHP_SHORT_VERSION" = "74" ]; then \
+    docker-php-ext-configure gd \
+        --with-gd \
+        --with-freetype=/usr/include/ \
+        --with-jpeg-dir=/usr/include/ \
+        --with-png-dir=/usr/include/; \
+else \
+    docker-php-ext-configure gd \
+        --with-gd \
+        --with-freetype-dir=/usr/include/ \
+        --with-jpeg-dir=/usr/include/ \
+        --with-png-dir=/usr/include/; \
+fi
 
 RUN docker-php-ext-install \
         bcmath \
