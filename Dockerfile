@@ -59,7 +59,7 @@ RUN docker-php-ext-configure bcmath --enable-bcmath \
     && docker-php-ext-configure sysvshm --enable-sysvshm \
     && docker-php-ext-configure xml --enable-xml
 
-RUN if [ "x$PHP_SHORT_VERSION" = "74" ]; then \
+RUN if [ "$PHP_SHORT_VERSION" = "74" ]; then \
     docker-php-ext-configure gd \
         --with-gd \
         --with-freetype=/usr/include/ \
