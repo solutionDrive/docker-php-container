@@ -38,6 +38,7 @@ RUN apk add --no-cache --virtual .sd-persistent-deps \
         libc-dev \
         libjpeg-turbo-dev \
         libmcrypt-dev \
+        oniguruma-dev \
         libpng-dev \
         libxml2-dev \
         libxml2-utils \
@@ -47,12 +48,7 @@ RUN apk add --no-cache --virtual .sd-persistent-deps \
 
 RUN docker-php-ext-configure bcmath --enable-bcmath \
     && docker-php-ext-configure calendar --enable-calendar \
-    && docker-php-ext-configure gd \
-        --with-gd \
-        --with-freetype-dir=/usr/include/ \
-        --with-jpeg-dir=/usr/include/ \
-        --with-png-dir=/usr/include/ \
-    && docker-php-ext-configure iconv --enable-iconv \
+    && docker-php-ext-configure iconv \
     && docker-php-ext-configure imap --with-imap \
     && docker-php-ext-configure intl --enable-intl \
     && docker-php-ext-configure pcntl --enable-pcntl \
@@ -61,9 +57,23 @@ RUN docker-php-ext-configure bcmath --enable-bcmath \
     && docker-php-ext-configure shmop --enable-shmop \
     && docker-php-ext-configure soap --enable-soap \
     && docker-php-ext-configure sysvshm --enable-sysvshm \
-    && docker-php-ext-configure xml --enable-xml \
-    && docker-php-ext-configure zip --enable-zip --with-libzip \
-    && docker-php-ext-install \
+    && docker-php-ext-configure xml --enable-xml
+
+RUN if [ "$PHP_SHORT_VERSION" = "74" ]; then \
+    docker-php-ext-configure gd \
+        --with-freetype=/usr/include/ \
+        --with-jpeg=/usr/include/ \
+    && docker-php-ext-configure zip --with-zip; \
+else \
+    docker-php-ext-configure gd \
+        --with-gd \
+        --with-freetype-dir=/usr/include/ \
+        --with-jpeg-dir=/usr/include/ \
+        --with-png-dir=/usr/include/ \
+    && docker-php-ext-configure zip --enable-zip --with-libzip; \
+fi
+
+RUN docker-php-ext-install \
         bcmath \
         calendar \
         exif \
@@ -82,10 +92,11 @@ RUN docker-php-ext-configure bcmath --enable-bcmath \
         soap \
         sysvshm \
         xml \
-        zip \
-    && pecl install redis xdebug-$XDEBUG_VERSION \
-    && docker-php-ext-enable opcache redis \
-    && ln -sf /usr/bin/msmtp /usr/sbin/sendmail
+        zip
+
+RUN pecl install redis xdebug-$XDEBUG_VERSION
+RUN docker-php-ext-enable opcache redis
+RUN ln -sf /usr/bin/msmtp /usr/sbin/sendmail
 
 RUN apk del .sd-build-deps \
     && rm -rf /tmp/*
