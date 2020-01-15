@@ -8,6 +8,8 @@ FROM php:$PHP_VERSION-fpm-alpine
 ARG PHP_SHORT_VERSION
 ARG XDEBUG_VERSION
 
+COPY config/memory-limit.ini $PHP_INI_DIR/conf.d/
+
 RUN set -xe
 RUN apk add --no-cache \
         bash \
