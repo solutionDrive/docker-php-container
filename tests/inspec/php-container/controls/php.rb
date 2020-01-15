@@ -19,4 +19,15 @@ control 'php' do
         its('exit_status') { should eq 0 }
         its('stdout') { should include 'PHP ' + php_version.to_s }
     end
+
+    describe command('php -i | grep ini') do
+        its('exit_status') { should eq 0 }
+        its('stdout') { should include 'memory-limit.ini'}
+    end
+
+    describe command('php -i | grep memory_limit') do
+        its('exit_status') { should eq 0 }
+        its('stdout') { should include 'memory_limit'}
+        its('stdout') { should include '256M' }
+    end
 end
