@@ -49,7 +49,7 @@ RUN apk add --no-cache --virtual .sd-persistent-deps \
         pkgconf
 
 # Fix iconv (see https://github.com/docker-library/php/issues/240#issuecomment-305038173 and other comments in the issue)
-RUN apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ gnu-libiconv
+RUN apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/v3.13/community/ gnu-libiconv
 ENV LD_PRELOAD /usr/lib/preloadable_libiconv.so php
 
 RUN docker-php-ext-configure bcmath --enable-bcmath \
