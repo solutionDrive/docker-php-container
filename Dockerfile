@@ -46,7 +46,8 @@ RUN apk add --no-cache --virtual .sd-persistent-deps \
         libxml2-utils \
         libzip-dev \
         pcre-dev \
-        pkgconf
+        pkgconf \
+        libwebp-dev
 
 # Fix iconv (see https://github.com/docker-library/php/issues/240#issuecomment-305038173 and other comments in the issue)
 RUN apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/v3.13/community/ gnu-libiconv
@@ -69,6 +70,7 @@ RUN if [ "$PHP_SHORT_VERSION" = "74" ]; then \
     docker-php-ext-configure gd \
         --with-freetype=/usr/include/ \
         --with-jpeg=/usr/include/ \
+        --with-webp=/usr/include/ \
     && docker-php-ext-configure zip --with-zip; \
 else \
     docker-php-ext-configure gd \
@@ -76,6 +78,7 @@ else \
         --with-freetype-dir=/usr/include/ \
         --with-jpeg-dir=/usr/include/ \
         --with-png-dir=/usr/include/ \
+        --with-webp-dir=/usr/include/ \
     && docker-php-ext-configure zip --enable-zip --with-libzip; \
 fi
 
