@@ -47,7 +47,9 @@ RUN apk add --no-cache --virtual .sd-persistent-deps \
         libzip-dev \
         pcre-dev \
         pkgconf \
-        libwebp-dev
+        libwebp-dev \
+        postgresql-dev \
+        postgresql
 
 # Fix iconv (see https://github.com/docker-library/php/issues/240#issuecomment-305038173 and other comments in the issue)
 RUN apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/v3.13/community/ gnu-libiconv
@@ -60,6 +62,7 @@ RUN docker-php-ext-configure bcmath --enable-bcmath \
     && docker-php-ext-configure intl --enable-intl \
     && docker-php-ext-configure pcntl --enable-pcntl \
     && docker-php-ext-configure pdo_mysql --with-pdo-mysql \
+    && docker-php-ext-configure pgsql --with-pgsql \
     && docker-php-ext-configure mbstring --enable-mbstring \
     && docker-php-ext-configure shmop --enable-shmop \
     && docker-php-ext-configure soap --enable-soap \
@@ -96,6 +99,7 @@ RUN docker-php-ext-install \
         mysqli \
         pcntl \
         pdo_mysql \
+        pgsql \
         posix \
         shmop \
         soap \
