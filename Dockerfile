@@ -28,7 +28,8 @@ RUN apk add --no-cache \
         msmtp \
         mysql-client \
         unzip \
-        wget
+        wget \
+        grep
 RUN apk add --no-cache --virtual .sd-build-deps \
         autoconf \
         build-base \
