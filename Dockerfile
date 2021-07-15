@@ -52,9 +52,10 @@ RUN apk add --no-cache --virtual .sd-persistent-deps \
         postgresql-dev \
         postgresql
 
-# Fix iconv (see https://github.com/docker-library/php/issues/240#issuecomment-305038173 and other comments in the issue)
-RUN apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/v3.13/community/ gnu-libiconv
-ENV LD_PRELOAD /usr/lib/preloadable_libiconv.so php
+# Fix iconv (see comments in the linked issue)
+# Previously https://github.com/docker-library/php/issues/240#issuecomment-305038173 now https://github.com/docker-library/php/issues/240#issuecomment-876464325
+RUN apk add gnu-libiconv=1.15-r3 --update-cache --repository http://dl-cdn.alpinelinux.org/alpine/v3.13/community/ --allow-untrusted
+ENV LD_PRELOAD /usr/lib/preloadable_libiconv.so
 
 RUN docker-php-ext-configure bcmath --enable-bcmath \
     && docker-php-ext-configure calendar --enable-calendar \
