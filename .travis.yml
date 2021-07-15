@@ -1,8 +1,6 @@
 sudo: required
 dist: focal
 language: ruby
-rvm:
-  - 2.3.7
 cache: bundler
 services:
   - docker
