@@ -1,5 +1,5 @@
 sudo: required
-dist: xenial
+dist: focal
 language: ruby
 rvm:
   - 2.3.7
