@@ -1,0 +1,74 @@
+name: Test and build
+on: [push, pull_request]
+jobs:
+  test-and-build:
+    name: '[PHP ${{ matrix.php-version }}] test and build'
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        experimental: [false]
+        include:
+          - latest: 0
+            php-version: 7.0
+            php-short-version: 70
+            xdebug-version: 2.7.2
+          - latest: 0
+            php-version: 7.1
+            php-short-version: 71
+            xdebug-version: 2.9.0
+          - latest: 0
+            php-version: 7.2
+            php-short-version: 72
+            xdebug-version: 2.9.0
+          - latest: 0
+            php-version: 7.3
+            php-short-version: 73
+            xdebug-version: 2.9.0
+          - latest: 1
+            php-version: 7.4
+            php-short-version: 74
+            xdebug-version: 2.9.0
+          - latest: 0
+            php-version: 8.0
+            php-short-version: 80
+            xdebug-version: 3.0.4
+            experimental: true
+      
+    continue-on-error: ${{ matrix.experimental }}
+
+    env:
+      LATEST: ${{ matrix.latest }}
+      PHP_VERSION: ${{ matrix.php-version }}
+      PHP_SHORT_VERSION: ${{ matrix.php-short-version }}
+      XDEBUG_VERSION: ${{ matrix.xdebug-version }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Build docker image
+        run: ./docker-build.sh
+        shell: bash
+
+      - name: Test docker image
+        run: ./docker-test.sh
+        shell: bash
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [test-and-build]
+#    if:
+#      contains('
+#      refs/heads/master
+#      ', github.ref)
+    steps:
+      - name: Show build images
+        run: docker images
+        shell: bash
+
+      # TODO: Push only on master
