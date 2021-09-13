@@ -10,30 +10,30 @@ jobs:
       matrix:
         experimental: [false]
         include:
-          - latest: 0
-            php-version: 7.0
+          - php-version: 7.0
             php-short-version: 70
             xdebug-version: 2.7.2
-          - latest: 0
-            php-version: 7.1
+            latest: 0
+          - php-version: 7.1
             php-short-version: 71
             xdebug-version: 2.9.0
-          - latest: 0
-            php-version: 7.2
+            latest: 0
+          - php-version: 7.2
             php-short-version: 72
             xdebug-version: 2.9.0
-          - latest: 0
-            php-version: 7.3
+            latest: 0
+          - php-version: 7.3
             php-short-version: 73
             xdebug-version: 2.9.0
-          - latest: 1
-            php-version: 7.4
+            latest: 0
+          - php-version: 7.4
             php-short-version: 74
             xdebug-version: 2.9.0
-          - latest: 0
-            php-version: 8.0
+            latest: 1
+          - php-version: 8.0
             php-short-version: 80
             xdebug-version: 3.0.4
+            latest: 0
             experimental: true
       
     continue-on-error: ${{ matrix.experimental }}
