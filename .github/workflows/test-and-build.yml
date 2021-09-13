@@ -43,7 +43,6 @@ jobs:
       PHP_VERSION: ${{ matrix.php-version }}
       PHP_SHORT_VERSION: ${{ matrix.php-short-version }}
       XDEBUG_VERSION: ${{ matrix.xdebug-version }}
-      CHEF_LICENSE: accept-no-persist
 
     steps:
       - uses: actions/checkout@v2
