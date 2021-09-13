@@ -59,6 +59,8 @@ jobs:
         with:
           ruby-version: 2.7 # Not needed with a .ruby-version file
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+        env:
+          CHEF_LICENSE: accept-no-persist
 
       - name: Test docker image
         run: ./docker-test.sh
