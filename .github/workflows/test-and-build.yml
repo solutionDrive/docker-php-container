@@ -107,14 +107,6 @@ jobs:
         run: ./docker-test.sh
         shell: bash
 
-  deploy:
-    runs-on: ubuntu-latest
-    needs: [test-and-build]
-#    if:
-#      contains('
-#      refs/heads/master
-#      ', github.ref)
-    steps:
       - name: Show build images
         run: docker images
         shell: bash
