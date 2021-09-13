@@ -71,7 +71,7 @@ RUN docker-php-ext-configure soap --enable-soap
 RUN docker-php-ext-configure sysvshm --enable-sysvshm
 RUN docker-php-ext-configure xml --enable-xml
 
-RUN if [ "$PHP_SHORT_VERSION" = "74" ]; then \
+RUN if [ "$PHP_SHORT_VERSION" >= "74" ]; then \
     docker-php-ext-configure gd \
         --with-freetype=/usr/include/ \
         --with-jpeg=/usr/include/ \
