@@ -95,7 +95,7 @@ RUN docker-php-ext-install gd
 RUN docker-php-ext-install iconv
 RUN docker-php-ext-install imap
 RUN docker-php-ext-install intl
-RUN if [ $(echo " $PHP_SHORT_VERSION <= 80" | bc) -eq 1 ]; then \
+RUN if [ $(echo " $PHP_SHORT_VERSION <= 74" | bc) -eq 1 ]; then \
   docker-php-ext-install json; \
 fi
 RUN docker-php-ext-install mbstring
