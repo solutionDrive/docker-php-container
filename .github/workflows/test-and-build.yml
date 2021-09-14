@@ -72,4 +72,6 @@ jobs:
         run: docker images
         shell: bash
 
-      # TODO: Push only on master
+      - name: Push images
+        run: ./docker-push.sh
+        shell: bash
