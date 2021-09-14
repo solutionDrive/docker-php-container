@@ -16,22 +16,22 @@ jobs:
             experimental: false
           - php-version: "7.1"
             php-short-version: "71"
-            xdebug-version: "2.9.0"
+            xdebug-version: "2.9.8"
             latest: 0
             experimental: false
           - php-version: "7.2"
             php-short-version: "72"
-            xdebug-version: "2.9.0"
+            xdebug-version: "2.9.8"
             latest: 0
             experimental: false
           - php-version: "7.3"
             php-short-version: "73"
-            xdebug-version: "2.9.0"
+            xdebug-version: "2.9.8"
             latest: 0
             experimental: false
           - php-version: "7.4"
             php-short-version: "74"
-            xdebug-version: "2.9.0"
+            xdebug-version: "2.9.8"
             latest: 1
             experimental: false
           - php-version: "8.0"
