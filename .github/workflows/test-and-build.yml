@@ -1,0 +1,85 @@
+name: Test and build
+on: [push, pull_request]
+jobs:
+  test-and-build:
+    name: '[PHP ${{ matrix.build-jobs.php-version }}] test and build'
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        build-jobs:
+          - php-version: "7.0"
+            php-short-version: "70"
+            xdebug-version: "2.7.2"
+            latest: 0
+            experimental: false
+          - php-version: "7.1"
+            php-short-version: "71"
+            xdebug-version: "2.9.8"
+            latest: 0
+            experimental: false
+          - php-version: "7.2"
+            php-short-version: "72"
+            xdebug-version: "2.9.8"
+            latest: 0
+            experimental: false
+          - php-version: "7.3"
+            php-short-version: "73"
+            xdebug-version: "2.9.8"
+            latest: 0
+            experimental: false
+          - php-version: "7.4"
+            php-short-version: "74"
+            xdebug-version: "2.9.8"
+            latest: 1
+            experimental: false
+          - php-version: "8.0"
+            php-short-version: "80"
+            xdebug-version: "3.0.4"
+            latest: 0
+            experimental: true
+      
+    continue-on-error: ${{ matrix.build-jobs.experimental }}
+
+    env:
+      LATEST: ${{ matrix.build-jobs.latest }}
+      PHP_VERSION: ${{ matrix.build-jobs.php-version }}
+      PHP_SHORT_VERSION: ${{ matrix.build-jobs.php-short-version }}
+      XDEBUG_VERSION: ${{ matrix.build-jobs.xdebug-version }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Build docker image
+        run: ./docker-build.sh
+        shell: bash
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7 # Not needed with a .ruby-version file
+          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+
+      - name: Test docker image
+        run: ./docker-test.sh
+        shell: bash
+
+      - name: Show build images
+        run: docker images
+        shell: bash
+
+      - name: Push images
+        run: ./docker-push.sh
+        shell: bash
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        if:
+          contains('
+          refs/heads/master
+          ', github.ref)
+

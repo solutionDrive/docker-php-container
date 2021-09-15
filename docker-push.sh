@@ -3,5 +3,4 @@
 set -e
 
 echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-docker push solutiondrive/docker-php-container
-docker push solutiondrive/php
+for i in `docker images --format "{{.Repository}}:{{.Tag}}" | grep "solutiondrive"`; do docker push $i; done

@@ -30,4 +30,10 @@ control 'php' do
         its('stdout') { should include 'memory_limit'}
         its('stdout') { should include '256M' }
     end
+
+    describe command('php -i | grep "json support"') do
+        its('exit_status') { should eq 0 }
+        its('stdout') { should include 'json support'}
+        its('stdout') { should include 'enabled' }
+    end
 end

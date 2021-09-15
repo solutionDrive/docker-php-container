@@ -1,3 +1,3 @@
-source 'https://rubygems.org' do
-    gem 'inspec'
-end
+source 'https://rubygems.org'
+
+gem 'inspec', '~> 3.7'
