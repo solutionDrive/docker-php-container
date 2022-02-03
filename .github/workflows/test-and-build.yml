@@ -36,7 +36,12 @@ jobs:
             experimental: false
           - php-version: "8.0"
             php-short-version: "80"
-            xdebug-version: "3.0.4"
+            xdebug-version: "3.1.3"
+            latest: 0
+            experimental: true
+          - php-version: "8.1"
+            php-short-version: "81"
+            xdebug-version: "3.1.3"
             latest: 0
             experimental: true
       
